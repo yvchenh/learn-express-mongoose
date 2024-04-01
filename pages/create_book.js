@@ -2,6 +2,17 @@ let Book = require('../models/book');
 let Author = require('../models/author');
 let Genre = require('../models/genre');
 
+function sanitizeInput(name){
+  if(typeof name != String){
+    return null;
+  }
+  return name.replace(/[^\w\s]/g,'');
+}
+
+function getAuthor(family_name,first_name){
+  return Author.findOne({family_name:family_name,first_name:first_name});
+}
+
 function getAuthor(family_name, first_name) {
   return Author.findOne({family_name: family_name, first_name: first_name});
 }
